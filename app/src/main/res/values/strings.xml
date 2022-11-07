@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Color Gradient Maker</string>
+    <string name="generate_colors">Generate Color</string>
+</resources>
