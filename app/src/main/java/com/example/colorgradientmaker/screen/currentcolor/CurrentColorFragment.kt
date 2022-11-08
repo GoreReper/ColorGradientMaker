@@ -1,7 +1,6 @@
-package com.example.colorgradientmaker.currentcolor
+package com.example.colorgradientmaker.screen.currentcolor
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import com.example.colorgradientmaker.R
+import com.example.colorgradientmaker.contracts.navigator
 import com.example.colorgradientmaker.databinding.FragmentCurrentColorBinding
 import com.example.colorgradientmaker.model.color.NamedColor
 import com.example.colorgradientmaker.model.size.NamedSize
@@ -22,10 +22,12 @@ class CurrentColorFragment: Fragment() {
     lateinit var currentColor: NamedColor
     lateinit var currentSize: NamedSize
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currentColor = arguments?.getParcelable(ARG_COLOR) ?: generateColor()
-        currentSize = arguments?.getParcelable(ARG_SIZE)?: generateSize()
+        currentColor = savedInstanceState?.getParcelable(ARG_COLOR) ?: generateColor()
+        currentSize = savedInstanceState?.getParcelable(ARG_SIZE)?: generateSize()
     }
 
     override fun onCreateView(
@@ -42,12 +44,20 @@ class CurrentColorFragment: Fragment() {
             renderGradient(currentColor,currentSize)
         }
 
+        binding.changeColorAndSize.setOnClickListener{
+            navigator().showColorListScreen()
 
-
-
+        }
         return binding.root
     }
 
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(ARG_COLOR, currentColor)
+        outState.putParcelable(ARG_SIZE, currentSize)
+
+    }
     private fun generateColor(): NamedColor {
         return NamedColor(value = -Random.nextInt(0xFFFFFF))
     }
@@ -67,6 +77,7 @@ class CurrentColorFragment: Fragment() {
             255 - abs(center-column)*n- abs(center-row)*n
         }
     }
+
 
     private fun renderGradient(color: NamedColor, size: NamedSize) = with(binding) {
         colorsContainer.removeAllViews()
@@ -112,20 +123,13 @@ class CurrentColorFragment: Fragment() {
 
     }
 
+
     companion object {
         @JvmStatic
         private val ARG_COLOR = "ARG_COLOR"
         @JvmStatic
         private val ARG_SIZE= "ARG_SIZE"
 
-        fun newInstance(color: NamedColor, size: NamedSize):CurrentColorFragment {
-            val args = Bundle()
-            args.putParcelable(ARG_COLOR, color)
-            args.putParcelable(ARG_SIZE, size)
-            val fragment = CurrentColorFragment()
-            fragment.arguments = args
-            return fragment
-        }
     }
 }
 

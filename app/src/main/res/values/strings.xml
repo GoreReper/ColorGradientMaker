@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Color Gradient Maker</string>
     <string name="generate_colors">Generate Color</string>
+    <string name="change_color_size">Change Color/Size</string>
+    <string name="color_list_title">Color List</string>
 </resources>

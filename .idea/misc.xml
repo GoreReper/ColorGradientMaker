@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/prog/ColorGradientMaker/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/prog/ColorGradientMaker/app/src/main/res/layout/fragment_current_color.xml" value="0.2" />
+        <entry key="..\:/prog/ColorGradientMaker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1225" />
+        <entry key="..\:/prog/ColorGradientMaker/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/prog/ColorGradientMaker/app/src/main/res/layout/fragment_color_list.xml" value="0.12552083333333333" />
+        <entry key="..\:/prog/ColorGradientMaker/app/src/main/res/layout/fragment_current_color.xml" value="0.22" />
       </map>
     </option>
   </component>
